@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include "TreeNode.hpp"
 #include "Tree.hpp"
 #include "Complex.hpp"
@@ -6,6 +7,9 @@
 #include <stdexcept>
 
 int main() {
+
+    // Create the SFML window
+    // sf::RenderWindow window(sf::VideoMode(800, 600), "Tree Visualization");
     // Create a Tree<double> and perform operations
     Tree<double> tree; 
         
@@ -25,6 +29,7 @@ int main() {
     tree.add_sub_node(child1, grandchild1);
     tree.add_sub_node(child1, grandchild2);
     tree.add_sub_node(child2, grandchild3);
+
 
     auto it1 = tree.begin_pre_order();
     auto end1 = tree.end_pre_order();
@@ -70,13 +75,15 @@ int main() {
         std::cout << *dfs_it1 << " ";
     }
     std::cout << std::endl;
+    std::cout << tree;
+
     delete tree.getCurrentRoot();
     // Create a Tree<int, 3> and perform operations
     std::cout << "Tree with 3 children" << std::endl;
     Tree<int, 3> tree1;
-
-    tree1.add_root(1);
-    auto root1 = tree1.getCurrentRoot();
+    auto root1= new TreeNode<int>(1);
+    tree1.add_root(root1);
+    // auto root1 = tree1.getCurrentRoot();
     std::cout << "Root: " << root1->value << std::endl;
 
     auto child1_int = new TreeNode<int>(2); 
@@ -152,6 +159,10 @@ int main() {
         std::cout << *dfs_it2 << " ";
     }
     std::cout << std::endl;
+
+    std::cout << tree1;
+
+
     delete tree1.getCurrentRoot();
 
 
@@ -159,14 +170,18 @@ int main() {
 
 
 Tree<Complex,3> tree3; // יצירת עץ עם מספר ילדים מרבי של 3
-tree3.add_root(Complex(5.2, 3.1));
-auto root3 = tree3.getCurrentRoot();
+
+auto root3 = new TreeNode<Complex>(Complex(5.2, 3.1));
+tree3.add_root(root3);
 
 tree3.add_sub_node(root3, new TreeNode<Complex>(Complex(1.2, 0.5)));
 tree3.add_sub_node(root3, new TreeNode<Complex>(Complex(1.3, 0.7)));
+tree3.add_sub_node(root3, new TreeNode<Complex>(Complex(1.4, 0.9)));
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.4, 0.9)));
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)));
+tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)));
 tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.6, 1.3)));
+tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.7, 1.5)));
 
 std::cout << "Preorder Traversal: ";
 auto pre_it3 = tree3.begin_pre_order();
@@ -176,6 +191,52 @@ for (; pre_it3 != pre_end3; ++pre_it3) {
 }
 std::cout << std::endl;
 
+  auto post_it3 = tree3.begin_post_order();
+    auto post_end3 = tree3.end_post_order();
+
+    std::cout << "Postorder Traversal: ";
+    for (; post_it3 != post_end3; ++post_it3) {
+        std::cout << *post_it3 << " ";
+    }
+    std::cout << std::endl;
+
+
+     auto bfs_it3 = tree3.begin_bfs_scan();
+    auto bfs_end3 = tree3.end_bfs_scan();
+
+    std::cout << "BFS Traversal: "<< std::endl;
+    for (; bfs_it3 != bfs_end3; ++bfs_it3) {
+        std::cout << *bfs_it3 << " ";
+    }
+    std::cout << std::endl;
+
+    auto dfs_it3 = tree3.begin_dfs_scan();
+    auto dfs_end3 = tree3.end_dfs_scan();
+
+    std::cout << "DFS Traversal: " << std::endl;
+    for (; dfs_it3 != dfs_end3; ++dfs_it3) {
+        std::cout << *dfs_it3 << " ";
+    }
+    std::cout << std::endl;
+    
+ std::cout << tree3;
+
+//  while (window.isOpen()) {
+//         sf::Event event;
+//         while (window.pollEvent(event)) {
+//             if (event.type == sf::Event::Closed) {
+//                 window.close();
+//             }
+//         }
+
+//         window.clear(sf::Color::Black);
+
+//         // Draw the tree
+//         // tree.drawTree(window);
+//         tree3.drawTree(window);
+//         window.display();
+//     }
+
 // auto heap_pair3 = tree3.myHeap();
 // std::cout << "Heap Traversal: ";
 // auto heap_it3 = heap_pair3.first;
@@ -184,5 +245,6 @@ std::cout << std::endl;
 //     std::cout << *heap_it3 << " ";
 // }
 // std::cout << std::endl;
+delete tree3.getCurrentRoot();
     return 0;
 }

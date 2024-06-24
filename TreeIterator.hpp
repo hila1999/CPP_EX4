@@ -200,7 +200,7 @@ private:
     std::stack<TreeNode<T>*> stack;
 
 public:
-    DFSIterator(TreeNode<T>* root) : current(nullptr) {
+    DFSIterator(TreeNode<T>* root) {
         if (root) stack.push(root);
         advance();
     }
@@ -212,7 +212,12 @@ public:
     T& operator*() const {
         return current->value;
     }
-
+    
+    DFSIterator& operator++(int){
+        DFSIterator temp = *this;
+        advance();
+        return temp;
+    }
     DFSIterator& operator++() {
         advance();
         return *this;
