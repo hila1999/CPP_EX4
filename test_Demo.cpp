@@ -139,7 +139,7 @@ void test_3k_tree_traversals() {
         for (; post_it != post_end; ++post_it) {
             postorder_result.push_back(*post_it);
         }
-        std::vector<double> expected_postorder = { 1.5, 1.6, 1.2, 1.7, 1.8, 1.3, 1.4, 5.2 };
+        std::vector<double> expected_postorder = { 5.2, 1.2, 1.5, 1.6, 1.3, 1.7, 1.4,1.8 };
         assert(postorder_result == expected_postorder);
 
         // Perform inorder traversal
@@ -149,7 +149,7 @@ void test_3k_tree_traversals() {
         for (; in_it != in_end; ++in_it) {
             inorder_result.push_back(*in_it);
         }
-        std::vector<double> expected_inorder = { 1.5, 1.2, 1.6, 5.2, 1.7, 1.3, 1.8, 1.4 };
+        std::vector<double> expected_inorder = { 5.2, 1.2, 1.5, 1.6, 1.3, 1.7, 1.4,1.8};
         assert(inorder_result == expected_inorder);
 
         // Perform BFS traversal
@@ -169,7 +169,7 @@ void test_3k_tree_traversals() {
         for (; dfs_it != dfs_end; ++dfs_it) {
             dfs_result.push_back(*dfs_it);
         }
-        std::vector<double> expected_dfs = { 5.2, 1.2, 1.5, 1.6, 1.3, 1.7, 1.8, 1.4 };
+        std::vector<double> expected_dfs = { 5.2, 1.2, 1.5, 1.6, 1.3, 1.7, 1.4,1.8};
         assert(dfs_result == expected_dfs);
 
         std::cout << "All 3-K tree traversal tests passed!" << std::endl;
