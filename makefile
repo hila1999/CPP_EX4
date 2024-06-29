@@ -1,6 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+TARGET = tree
 
 all: tree test
 
@@ -17,7 +18,8 @@ Test.o: test_Demo.cpp Tree.hpp TreeNode.hpp TreeIterator.hpp
 	$(CXX) $(CXXFLAGS) -c test_Demo.cpp
 
 valgrind:
-	valgrind --leak-check=full ./tree	
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./$(TARGET)
+
 
 clean:
 	rm -f *.o tree

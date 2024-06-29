@@ -5,7 +5,10 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
-
+ //gui
+ //heap iterator
+ //cheack if i do iterator
+ //test
 int main() {
 
     // Create the SFML window
@@ -15,9 +18,9 @@ int main() {
         
     auto root =new TreeNode<double>(1.2);
     tree.add_root(root);
-    std::cout << "Root: " << tree.getCurrentRoot()->value << std::endl;
+    // std::cout << "Root: " << tree.getCurrentRoot()->value << std::endl;
     
-    // auto root = tree.getCurrentRoot();
+    // // auto root = tree.getCurrentRoot();
     auto child1 = new TreeNode<double>(1.2);
     auto child2 = new TreeNode<double>(1.3);
     auto grandchild1 = new TreeNode<double>(1.4);
@@ -75,16 +78,15 @@ int main() {
         std::cout << *dfs_it1 << " ";
     }
     std::cout << std::endl;
-    std::cout << tree;
+    // std::cout << tree;
 
-    delete tree.getCurrentRoot();
-    // Create a Tree<int, 3> and perform operations
+  // Create a Tree<int, 3> and perform operations
     std::cout << "Tree with 3 children" << std::endl;
     Tree<int, 3> tree1;
     auto root1= new TreeNode<int>(1);
     tree1.add_root(root1);
-    // auto root1 = tree1.getCurrentRoot();
-    std::cout << "Root: " << root1->value << std::endl;
+//     // auto root1 = tree1.getCurrentRoot();
+//     std::cout << "Root: " << root1->value << std::endl;
 
     auto child1_int = new TreeNode<int>(2); 
     std::cout << "Child1: " << child1_int->value << std::endl;
@@ -160,10 +162,10 @@ int main() {
     }
     std::cout << std::endl;
 
-    std::cout << tree1;
+    // std::cout << tree1;
 
 
-    delete tree1.getCurrentRoot();
+
 
 
 
@@ -182,6 +184,7 @@ tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)))
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)));
 tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.6, 1.3)));
 tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.7, 1.5)));
+tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.8, 1.7)));
 
 std::cout << "Preorder Traversal: ";
 auto pre_it3 = tree3.begin_pre_order();
@@ -219,32 +222,18 @@ std::cout << std::endl;
     }
     std::cout << std::endl;
     
- std::cout << tree3;
+//  std::cout << tree3;
 
-//  while (window.isOpen()) {
-//         sf::Event event;
-//         while (window.pollEvent(event)) {
-//             if (event.type == sf::Event::Closed) {
-//                 window.close();
-//             }
-//         }
 
-//         window.clear(sf::Color::Black);
 
-//         // Draw the tree
-//         // tree.drawTree(window);
-//         tree3.drawTree(window);
-//         window.display();
-//     }
-
-// auto heap_pair3 = tree3.myHeap();
-// std::cout << "Heap Traversal: ";
-// auto heap_it3 = heap_pair3.first;
-// auto heap_end3 = heap_pair3.second;
-// for (; heap_it3 != heap_end3; ++heap_it3) {
-//     std::cout << *heap_it3 << " ";
-// }
-// std::cout << std::endl;
-delete tree3.getCurrentRoot();
+// // auto heap_pair3 = tree3.myHeap();
+// // std::cout << "Heap Traversal: ";
+// // auto heap_it3 = heap_pair3.first;
+// // auto heap_end3 = heap_pair3.second;
+// // for (; heap_it3 != heap_end3; ++heap_it3) {
+// //     std::cout << *heap_it3 << " ";
+// // }
+// // std::cout << std::endl;
+// delete tree3.getCurrentRoot();
     return 0;
 }

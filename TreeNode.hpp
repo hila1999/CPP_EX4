@@ -10,13 +10,17 @@ public:
     std::vector<TreeNode*> children;
 
     TreeNode(T val) : value(val) {}
-    ~TreeNode() {
-        // for (auto child : children) {
-        //     delete child;
-        // }
-    }
+    // ~TreeNode() {
+    //     for (auto child : children) {
+    //         delete child;
+    //     }
+    // }
     T ger_value() const {
         return value;
+    }
+    
+      void remove_children() {
+        children.clear();
     }
 };
 

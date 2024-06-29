@@ -11,6 +11,7 @@ private:
 
 public:
     Complex(double real, double imaginary) : real(real), imaginary(imaginary) {}
+    ~Complex() {}
 
     double getReal() const {
         return real;

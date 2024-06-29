@@ -31,6 +31,12 @@ public:
         return *this;
     }
 
+    PreorderIterator &operator++(int) {
+        PreorderIterator temp = *this;
+        advance();
+        return temp;
+    }
+
 private:
     void advance() {
         if (!stack.empty()) {
@@ -72,6 +78,12 @@ public:
     PostorderIterator& operator++() {
         advance();
         return *this;
+    }
+
+    PostorderIterator &operator++(int) {
+        PostorderIterator temp = *this;
+        advance();
+        return temp;
     }
 
 private:
@@ -131,6 +143,12 @@ public:
         return *this;
     }
 
+    InorderIterator &operator++(int) {
+        InorderIterator temp = *this;
+        advance();
+        return temp;
+    }
+
 private:
     void advance() {
         if (!current) return;
@@ -178,6 +196,14 @@ public:
         return *this;
     }
 
+    TreeNode<T>* operator->() { return queue.front(); }
+
+    BFSIterator &operator++(int) {
+        BFSIterator temp = *this;
+        advance();
+        return temp;
+    }
+
 private:
     void advance() {
         if (!queue.empty()) {
@@ -213,14 +239,16 @@ public:
         return current->value;
     }
     
-    DFSIterator& operator++(int){
-        DFSIterator temp = *this;
-        advance();
-        return temp;
-    }
+ 
     DFSIterator& operator++() {
         advance();
         return *this;
+    }
+
+    DFSIterator &operator++(int) {
+        DFSIterator temp = *this;
+        advance();
+        return temp;
     }
 
 private:

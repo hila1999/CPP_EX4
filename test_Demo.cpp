@@ -185,3 +185,26 @@ int main() {
    
     return 0;
 }
+// }void test_begin_pre_order() {
+//     try {
+//         // Create a tree
+//         Tree<double> tree;
+        
+//         // Add nodes to the tree
+//         auto root = new TreeNode<double>(5.2);
+//         tree.add_root(root);
+//         auto child1 = new TreeNode<double>(1.2);
+//         auto child2 = new TreeNode<double>(1.3);
+//         tree.add_sub_node(root, child1);
+//         tree.add_sub_node(root, child2);
+        
+//         // Get the iterator using begin_pre_order()
+//         auto it = tree.begin_pre_order();
+        
+//         // Check if the iterator points to the correct node
+//         assert(*it == 5.2);
+//         std::cout << "Test for begin_pre_order() passed!" << std::endl;
+//     } catch (const std::exception& e) {
+//         std::cerr << "Error in test: " << e.what() << std::endl;
+//     }
+// }
