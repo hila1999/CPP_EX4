@@ -1,10 +1,13 @@
 #ifndef TREEITERATOR_HPP
 #define TREEITERATOR_HPP
-
+//hila.shamir99@gmail.com
+//314906983
 #include "TreeNode.hpp"
 #include <stack>
 #include <queue>
-
+#include <algorithm>
+#include <functional>
+#include <iterator>
 // Preorder iterator
 template<typename T, int k>
 class PreorderIterator {
@@ -24,6 +27,10 @@ public:
 
     T& operator*() const {
         return current->value;
+    }
+
+    bool operator==(const PreorderIterator& other) const {
+        return current == other.current;
     }
 
     PreorderIterator& operator++() {
@@ -69,6 +76,9 @@ public:
 
     bool operator!=(const PostorderIterator& other) const {
         return current != other.current;
+    }
+    bool operator==(const PostorderIterator& other) const {
+        return current == other.current;
     }
 
     T& operator*() const {
@@ -133,6 +143,9 @@ public:
     bool operator!=(const InorderIterator& other) const {
         return current != other.current;
     }
+    bool operator==(const InorderIterator& other) const {
+        return current == other.current;
+    }
 
     T& operator*() const {
         return current->value;
@@ -186,7 +199,9 @@ public:
     bool operator!=(const BFSIterator& other) const {
         return current != other.current;
     }
-
+    bool operator==(const BFSIterator& other) const {
+        return current == other.current;
+    }
     T& operator*() const {
         return current->value;
     }
@@ -234,7 +249,9 @@ public:
     bool operator!=(const DFSIterator& other) const {
         return current != other.current;
     }
-
+    bool operator==(const DFSIterator& other) const {
+        return current == other.current;
+    }
     T& operator*() const {
         return current->value;
     }
@@ -262,6 +279,28 @@ private:
         } else {
             current = nullptr;
         }
+    }
+};
+
+// Iterator for the heap
+template<typename T>
+class HeapIterator : public std::iterator<std::input_iterator_tag, T> {
+    const std::vector<T>* heap;
+    size_t index;
+public:
+    HeapIterator(const std::vector<T>* heap, size_t index) : heap(heap), index(index) {}
+
+    bool operator!=(const HeapIterator& other) const {
+        return index != other.index;
+    }
+
+    const T& operator*() const {
+        return (*heap)[index];
+    }
+
+    HeapIterator& operator++() {
+        ++index;
+        return *this;
     }
 };
 

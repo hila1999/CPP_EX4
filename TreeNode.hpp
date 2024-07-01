@@ -1,8 +1,9 @@
 #ifndef TREENODE_HPP
 #define TREENODE_HPP
-
+//hila.shamir99@gmail.com
+//314906983
 #include <vector>
-
+#include <iostream>
 template<typename T>
 class TreeNode {
 public:
@@ -10,16 +11,12 @@ public:
     std::vector<TreeNode*> children;
 
     TreeNode(T val) : value(val) {}
-    // ~TreeNode() {
-    //     for (auto child : children) {
-    //         delete child;
-    //     }
-    // }
-    T ger_value() const {
+    
+    T get_value() const {
         return value;
     }
     
-      void remove_children() {
+    void remove_children() {
         children.clear();
     }
 };

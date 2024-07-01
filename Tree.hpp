@@ -8,6 +8,11 @@
 #include <vector>
 #include <stdexcept>
 #include <SFML/Graphics.hpp>
+#include <queue>
+#include <algorithm>
+#include <functional>
+//hila.shamir99@gmail.com
+//314906983
 
 // Forward declaration for the general template
 template<typename T, int k = 2>
@@ -16,6 +21,10 @@ class Tree;
 template<typename T>
 std::string to_string(const T& value) {
     return std::to_string(value);
+}
+
+std::string to_string(const std::string& value) {
+    return value;
 }
 
 // Forward declare the to_string function for Complex
@@ -27,6 +36,8 @@ class Tree<T, 2> {
 public:
     using TreeNodeType = TreeNode<T>;
     TreeNodeType* root;
+    std::vector<T> heap;
+
 
     Tree() : root(nullptr) {}
     ~Tree() { 
@@ -159,6 +170,36 @@ public:
         return DFSIterator<T, 2>(nullptr);
     }
 
+   std::pair<HeapIterator<T>, HeapIterator<T>> myHeap() {
+    heap.clear();
+    if (!root) return { HeapIterator<T>(&heap, 0), HeapIterator<T>(&heap, 0) };
+
+    // Transform binary tree to array representation
+    std::queue<TreeNode<T>*> q;
+    q.push(root);
+    while (!q.empty()) {
+        TreeNode<T>* node = q.front();
+        q.pop();
+        heap.push_back(node->get_value());
+        for (auto child : node->children) {
+            q.push(child);
+        }
+    }
+
+    // Convert array representation to min heap
+    std::make_heap(heap.begin(), heap.end(), std::greater<T>());
+
+    // Debug: Print the heap vector (before sorting)
+    std::cout << "Heap vector before sorting: ";
+    for (const auto& val : heap) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    // Return iterators for the heap
+    return { HeapIterator<T>(&heap, 0), HeapIterator<T>(&heap, heap.size()) };
+}
+
 private:
     void deleteTree(TreeNodeType* node) {
         if (node) {
@@ -182,15 +223,7 @@ public:
     ~Tree() { 
         deleteTree(root);
         
-        //  BFSIterator<T, k> it = begin_bfs_scan();
-        // BFSIterator<T, k> prev = it;
-        // BFSIterator<T, k> end = end_bfs_scan();
-        // while (it != end) {
-        //     prev = it;
-        //     ++it;
-        //     prev->remove_children();
-        // }
-        // root = nullptr;
+        
          } 
 
     void add_root(TreeNode<T>* root1) {

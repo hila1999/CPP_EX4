@@ -5,20 +5,21 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
- //gui
- //heap iterator
- //cheack if i do iterator
- //test
+#include <queue>
+#include <algorithm>
+#include <functional>
+#include <iterator>
+//hila.shamir99@gmail.com
+//314906983
+ 
 int main() {
 
-    // Create the SFML window
-    // sf::RenderWindow window(sf::VideoMode(800, 600), "Tree Visualization");
+   
     // Create a Tree<double> and perform operations
     Tree<double> tree; 
         
     auto root =new TreeNode<double>(1.2);
     tree.add_root(root);
-    // std::cout << "Root: " << tree.getCurrentRoot()->value << std::endl;
     
     // // auto root = tree.getCurrentRoot();
     auto child1 = new TreeNode<double>(1.2);
@@ -79,6 +80,19 @@ int main() {
     }
     std::cout << std::endl;
     // std::cout << tree;
+    
+
+      // Transform the binary tree to a minimum heap and get iterators
+    auto heapIterators = tree.myHeap();
+    auto heapBegin = heapIterators.first;
+    auto heapEnd = heapIterators.second;
+
+    // Print the elements of the heap
+    std::cout << "Heap elements in order: ";
+    for (auto it = heapBegin; it != heapEnd; ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 
   // Create a Tree<int, 3> and perform operations
     std::cout << "Tree with 3 children" << std::endl;
@@ -182,7 +196,7 @@ tree3.add_sub_node(root3, new TreeNode<Complex>(Complex(1.4, 0.9)));
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.4, 0.9)));
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)));
 tree3.add_sub_node(root3->children[0], new TreeNode<Complex>(Complex(1.5, 1.1)));
-tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.6, 1.3)));
+// tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.6, 1.3)));
 tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.7, 1.5)));
 tree3.add_sub_node(root3->children[1], new TreeNode<Complex>(Complex(1.8, 1.7)));
 
@@ -226,14 +240,5 @@ std::cout << std::endl;
 
 
 
-// // auto heap_pair3 = tree3.myHeap();
-// // std::cout << "Heap Traversal: ";
-// // auto heap_it3 = heap_pair3.first;
-// // auto heap_end3 = heap_pair3.second;
-// // for (; heap_it3 != heap_end3; ++heap_it3) {
-// //     std::cout << *heap_it3 << " ";
-// // }
-// // std::cout << std::endl;
-// delete tree3.getCurrentRoot();
     return 0;
 }
